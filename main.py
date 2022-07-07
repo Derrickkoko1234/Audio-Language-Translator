@@ -4,13 +4,22 @@ from google_trans_new import google_translator
 import pyttsx3
 
 running = True
+"""
+The main loop for the program. This is where the program will run until the user tells the program to quit.
+@returns nothing
+"""
 
 recognizer = sr.Recognizer()
+"""
+Initialize the recognizer and engine for text to speech.
+"""
 engine = pyttsx3.init()
 
 while running:
+  result = ''
   with sr.Microphone() as source:
     print('Clearing background noises...')
+    engine.say('Clearing background noises...')
     recognizer.adjust_for_ambient_noise(source, duration=1)
     print('Waiting for your message')
     audio = recognizer.listen(source, timeout=20)
